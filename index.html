@@ -1,137 +1,296 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nome Turbo</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;padding:24px 14px;min-height:100vh;background:#0b1020;color:white;font-family:Arial,sans-serif}
-.container{max-width:520px;margin:auto;background:#141b2e;padding:24px;border:1px solid #293451;border-radius:20px;box-shadow:0 12px 40px #0005}
-h1{text-align:center;font-size:34px;margin:0 0 8px;color:#62e6ff}
-.subtitle{text-align:center;color:#b5c1d9;margin-bottom:26px}
-label{display:block;margin:16px 0 8px;font-weight:bold}
-input,select,button{width:100%;padding:14px;border-radius:11px;font-size:16px}
-input,select{background:#0b1020;color:white;border:1px solid #354363}
-button{border:none;cursor:pointer;font-weight:bold}
-.generate{margin-top:22px;background:linear-gradient(90deg,#00c6ff,#7b61ff);color:white}
-.results{margin-top:22px;display:grid;gap:12px}
-.result{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px;background:#202a43;border:1px solid #354363;border-radius:12px;overflow-wrap:anywhere}
-.result span{font-weight:bold;overflow-wrap:anywhere}
-.copy{width:auto;min-width:82px;padding:10px;background:#344565;color:white;font-size:13px}
-.message{text-align:center;color:#62e6ff;min-height:20px;margin-top:12px}
-footer{text-align:center;margin-top:24px;color:#8593b2;font-size:12px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome Turbo | Gerador Automático de Nomes</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #1e293b;
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            border: 1px solid #334155;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #38bdf8;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #0f172a;
+            border: 2px solid #334155;
+            border-radius: 10px;
+            color: #f8fafc;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #38bdf8;
+        }
+
+        .grid-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .category-btn {
+            background-color: #0f172a;
+            border: 2px solid #334155;
+            color: #cbd5e1;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .category-btn.active {
+            background-color: #38bdf8;
+            border-color: #38bdf8;
+            color: #0f172a;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .main-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #38bdf8, #2563eb);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            transition: transform 0.1s, opacity 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .main-btn:active {
+            transform: scale(0.98);
+        }
+
+        .result-box {
+            margin-top: 25px;
+            background-color: #0f172a;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px dashed #334155;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .result-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #38bdf8;
+            word-break: break-all;
+            padding-right: 40px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            background-color: #334155;
+            border: none;
+            color: #f8fafc;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: #475569;
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+    </style>
 </head>
 <body>
-<main class="container">
-<h1>⚡ Nome Turbo</h1>
-<p class="subtitle">Crie nomes incríveis em segundos!</p>
 
-<label for="base">Seu nome ou palavra (opcional)</label>
-<input id="base" maxlength="20" placeholder="Ex.: Lucas, Shadow, Dragon">
+    <div class="container">
+        <h1>⚡ Nome Turbo</h1>
+        <p class="subtitle">Crie nomes incríveis em segundos!</p>
 
-<label for="mode">Escolha um estilo</label>
-<select id="mode">
-<option value="gamer">🎮 Gamer</option>
-<option value="tiktok">📱 TikTok</option>
-<option value="instagram">📸 Instagram</option>
-<option value="equipe">👥 Equipes</option>
-<option value="sombrio">🌑 Sombrio</option>
-<option value="futurista">🚀 Futurista</option>
-<option value="engracado">😂 Engraçado</option>
-</select>
+        <div class="input-group">
+            <label for="base-word">SEU NOME OU PALAVRA (OPCIONAL)</label>
+            <input type="text" id="base-word" placeholder="Ex: Lucas, Reis, Fire...">
+        </div>
 
-<button class="generate" id="generate">⚡ GERAR NOMES</button>
-<div class="results" id="results" aria-live="polite"></div>
-<p class="message" id="message" aria-live="polite"></p>
-<footer>Nome Turbo © 2026 · Crie seu próximo nome!</footer>
-</main>
+        <label style="text-align: left; display: block;">ESCOLHA UM ESTILO</label>
+        <div class="grid-categories">
+            <button class="category-btn active" onclick="selectCategory('gamer')">🎮 Gamer</button>
+            <button class="category-btn" onclick="selectCategory('tiktok')">📱 TikTok</button>
+            <button class="category-btn" onclick="selectCategory('instagram')">📸 Instagram</button>
+            <button class="category-btn" onclick="selectCategory('equipes')">👥 Equipes</button>
+            <button class="category-btn" onclick="selectCategory('sombrio')">🌑 Sombrio</button>
+            <button class="category-btn" onclick="selectCategory('futurista')">🚀 Futurista</button>
+            <button class="category-btn" onclick="selectCategory('engracado')">😂 Engraçado</button>
+        </div>
 
-<script>
-const styles={
-gamer:{first:["Dark","Pro","Shadow","Ghost","Venom","Dragon","Night","Blaze","King","Zero"],last:["X","BR","Wolf","Hunter","Storm","Fire","Ninja","Legend","Strike","Play"]},
-tiktok:{first:["Real","Only","Hey","Its","Vibe","Crazy","Top","Daily","Mini","Ultra"],last:["Tok","Vibes","Clips","Zone","Mix","Show","Trend","On","Star","World"]},
-instagram:{first:["Its","Real","The","Just","Hey","Life","Dream","Moon","Golden","My"],last:["Vibes","World","Diary","Mood","Life","Soul","Dreams","Star","Space","Official"]},
-equipe:{first:["Elite","Fúria","Tropa","Lendas","Titãs","Alpha","Falcões","Nexus","Supremos","Legião"],last:["Team","Squad","Force","BR","Gaming","X","Prime","United","Legends","Clã"]},
-sombrio:{first:["Dark","Void","Shadow","Phantom","Raven","Night","Dread","Ghost","Abyss","Black"],last:["Soul","Reaper","Moon","Storm","Shade","Blade","Mist","Zero","Wolf","X"]},
-futurista:{first:["Cyber","Neo","Quantum","Nexus","Hyper","Nova","Pixel","Astro","Omega","Zeta"],last:["X","Core","Byte","Wave","Flux","Tech","Bot","Prime","Orbit","One"]},
-engracado:{first:["Pato","Batata","Mestre","Capivara","Biscoito","Pudim","Tio","Ninja","Zé","Big"],last:["Supremo","Do Pix","Malvado","Turbo","Dançante","Sem WiFi","Gamer","Do Grau","Misterioso","Lendário"]}
-};
+        <button class="main-btn" onclick="generateName()">⚡ GERAR NOME</button>
 
-const results=document.getElementById("results");
-const message=document.getElementById("message");
+        <div class="result-box">
+            <span id="result-display" class="result-text">Clique em Gerar!</span>
+            <button class="copy-btn" id="copy-button" onclick="copyToClipboard()" style="display: none;">Copiar</button>
+        </div>
 
-function randomItem(list){
-return list[Math.floor(Math.random()*list.length)];
-}
+        <footer>
+            Nome Turbo &copy; 2026 &middot; Crie seu próximo nome!
+        </footer>
+    </div>
 
-function createName(mode,base){
-const style=styles[mode];
-const first=randomItem(style.first);
-const last=randomItem(style.last);
+    <script>
+        let currentCategory = 'gamer';
 
-if(!base)return Math.random()<0.5?first+last:first+"_"+last;
+        const database = {
+            gamer: {
+                prefix: ['Pro_', 'Cyber', 'Alpha', 'Hyper', 'Vortex', 'Krypton', 'Shadow'],
+                suffix: ['_FPS', 'X', 'GG', 'Plays', 'Storm', 'Striker', 'Titan']
+            },
+            tiktok: {
+                prefix: ['Hey', 'O_', 'Vibe_', 'Daily', 'Mundo', 'Canal_'],
+                suffix: ['Oficial', 'Oli', 'Vibes', 'Arts', 'Videos', 'Tech']
+            },
+            instagram: {
+                prefix: ['Eu_', 'Sou_', 'Studio_', 'Efeito_'],
+                suffix: ['.ofc', '.reserva', '_perfil', '.digital']
+            },
+            equipes: {
+                prefix: ['Team_', 'Clan_', 'Alpha_', 'Alliance_'],
+                suffix: ['Esports', 'Squad', 'Elite', 'Force']
+            },
+            sombrio: {
+                prefix: ['Ghost_', 'Phantom', 'Void_', 'Dark_', 'Eclipse'],
+                suffix: ['Slayer', 'Specter', 'Wraith', 'Hunter']
+            },
+            futurista: {
+                prefix: ['Neo_', 'Nexus_', 'Matrix_', 'Quantum_'],
+                suffix: ['Core', 'Sync', 'Grid', 'Bot']
+            },
+            engracado: {
+                prefix: ['Zeca_', 'Capivara_', 'Biscoito_', 'Rei_Do_'],
+                suffix: ['Cansado', 'Gamer', 'SemNet', 'Alface']
+            }
+        };
 
-const patterns=[
-()=>base+last,
-()=>first+base,
-()=>base+"_"+last,
-()=>first+"_"+base,
-()=>base+randomItem(["X","7","99","YT","BR"]),
-()=>first+base+last
-];
-return randomItem(patterns)();
-}
+        function selectCategory(category) {
+            currentCategory = category;
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Encontra o botão clicado para ativar
+            event.currentTarget.classList.add('active');
+        }
 
-function generateNames(){
-const mode=document.getElementById("mode").value;
-const base=document.getElementById("base").value.trim().replace(/\s+/g,"");
-const names=new Set();
-let attempts=0;
+        function generateName() {
+            const baseInput = document.getElementById('base-word').value.trim();
+            const lists = database[currentCategory];
+            
+            const randomPrefix = lists.prefix[Math.floor(Math.random() * lists.prefix.length)];
+            const randomSuffix = lists.suffix[Math.floor(Math.random() * lists.suffix.length)];
+            
+            let finalName = "";
 
-while(names.size<3&&attempts<100){
-names.add(createName(mode,base));
-attempts++;
-}
+            if (baseInput !== "") {
+                // Se o usuário digitou algo, mistura com a palavra dele
+                if (Math.random() > 0.5) {
+                    finalName = randomPrefix + baseInput;
+                } else {
+                    finalName = baseInput + randomSuffix;
+                }
+            } else {
+                // Se estiver vazio, gera 100% do zero
+                finalName = randomPrefix + "_" + randomSuffix;
+            }
 
-results.innerHTML="";
-names.forEach(name=>{
-const card=document.createElement("div");
-card.className="result";
+            // Remove caracteres duplicados feios como __ ou ..
+            finalName = finalName.replace(/__+/g, '_').replace(/\.\.+/g, '.');
 
-const span=document.createElement("span");
-span.textContent=name;
+            const display = document.getElementById('result-display');
+            display.innerText = finalName;
+            
+            const copyBtn = document.getElementById('copy-button');
+            copyBtn.style.display = 'block';
+            copyBtn.innerText = 'Copiar';
+        }
 
-const button=document.createElement("button");
-button.className="copy";
-button.textContent="📋 Copiar";
+        function copyToClipboard() {
+            const textToCopy = document.getElementById('result-display').innerText;
+            if (textToCopy === "Clique em Gerar!") return;
 
-button.addEventListener("click",async()=>{
-try{
-await navigator.clipboard.writeText(name);
-message.textContent="Nome copiado: "+name;
-}catch(error){
-const area=document.createElement("textarea");
-area.value=name;
-document.body.appendChild(area);
-area.select();
-const copied=document.execCommand("copy");
-area.remove();
-message.textContent=copied?"Nome copiado: "+name:"Copie este nome: "+name;
-}
-});
-
-card.append(span,button);
-results.appendChild(card);
-});
-
-message.textContent="Seus nomes estão prontos! 🚀";
-}
-
-document.getElementById("generate").addEventListener("click",generateNames);
-generateNames();
-</script>
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                document.getElementById('copy-button').innerText = 'Copiado!';
+            }).catch(err => {
+                console.error('Erro ao copiar: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
