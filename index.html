@@ -1,272 +1,137 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nome Turbo</title>
-
 <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 24px 14px;
-  min-height: 100vh;
-  background: #0b1020;
-  color: white;
-  font-family: Arial, sans-serif;
-}
-
-.caixa {
-  max-width: 440px;
-  margin: 20px auto;
-  padding: 24px;
-  border: 1px solid #39365d;
-  border-radius: 20px;
-  background: #171b32;
-  box-shadow: 0 0 25px #7c3aed20;
-}
-
-h1 {
-  color: #a78bfa;
-  font-size: 34px;
-  margin-bottom: 8px;
-}
-
-.subtitulo {
-  color: #cbd5e1;
-  margin-bottom: 24px;
-}
-
-label {
-  display: block;
-  text-align: left;
-  margin: 18px 0 8px;
-  font-weight: bold;
-}
-
-input, select, button {
-  width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  font-size: 16px;
-}
-
-input, select {
-  border: 1px solid #4b5070;
-  background: #0f1428;
-  color: white;
-}
-
-button {
-  border: none;
-  margin-top: 12px;
-  background: #8b5cf6;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-.resultado {
-  margin-top: 22px;
-  text-align: left;
-}
-
-.nome {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 10px;
-  background: #252b46;
-  overflow-wrap: anywhere;
-}
-
-.nome span {
-  font-weight: bold;
-  overflow-wrap: anywhere;
-}
-
-.nome button {
-  width: auto;
-  flex-shrink: 0;
-  margin: 0;
-  padding: 9px 12px;
-  font-size: 13px;
-  background: #414866;
-}
-
-#mensagem {
-  color: #c4b5fd;
-  font-size: 14px;
-  margin-top: 14px;
-}
-
-.rodape {
-  color: #94a3b8;
-  font-size: 12px;
-  margin-top: 24px;
-}
+*{box-sizing:border-box}
+body{margin:0;padding:24px 14px;min-height:100vh;background:#0b1020;color:white;font-family:Arial,sans-serif}
+.container{max-width:520px;margin:auto;background:#141b2e;padding:24px;border:1px solid #293451;border-radius:20px;box-shadow:0 12px 40px #0005}
+h1{text-align:center;font-size:34px;margin:0 0 8px;color:#62e6ff}
+.subtitle{text-align:center;color:#b5c1d9;margin-bottom:26px}
+label{display:block;margin:16px 0 8px;font-weight:bold}
+input,select,button{width:100%;padding:14px;border-radius:11px;font-size:16px}
+input,select{background:#0b1020;color:white;border:1px solid #354363}
+button{border:none;cursor:pointer;font-weight:bold}
+.generate{margin-top:22px;background:linear-gradient(90deg,#00c6ff,#7b61ff);color:white}
+.results{margin-top:22px;display:grid;gap:12px}
+.result{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px;background:#202a43;border:1px solid #354363;border-radius:12px;overflow-wrap:anywhere}
+.result span{font-weight:bold;overflow-wrap:anywhere}
+.copy{width:auto;min-width:82px;padding:10px;background:#344565;color:white;font-size:13px}
+.message{text-align:center;color:#62e6ff;min-height:20px;margin-top:12px}
+footer{text-align:center;margin-top:24px;color:#8593b2;font-size:12px}
 </style>
 </head>
-
 <body>
-<main class="caixa">
-  <h1>⚡ Nome Turbo</h1>
-  <p class="subtitulo">
-    Crie nomes incríveis em segundos!
-  </p>
+<main class="container">
+<h1>⚡ Nome Turbo</h1>
+<p class="subtitle">Crie nomes incríveis em segundos!</p>
 
-  <label for="palavra">Digite uma palavra</label>
-  <input
-    id="palavra"
-    type="text"
-    maxlength="20"
-    placeholder="Ex.: Dragon"
-    autocomplete="off"
-  >
+<label for="base">Seu nome ou palavra (opcional)</label>
+<input id="base" maxlength="20" placeholder="Ex.: Lucas, Shadow, Dragon">
 
-  <label for="estilo">Escolha seu estilo</label>
-  <select id="estilo">
-    <option value="gamer">🎮 Gamer</option>
-    <option value="sombrio">👻 Sombrio</option>
-    <option value="futurista">🤖 Futurista</option>
-    <option value="engracado">😂 Engraçado</option>
-  </select>
+<label for="mode">Escolha um estilo</label>
+<select id="mode">
+<option value="gamer">🎮 Gamer</option>
+<option value="tiktok">📱 TikTok</option>
+<option value="instagram">📸 Instagram</option>
+<option value="equipe">👥 Equipes</option>
+<option value="sombrio">🌑 Sombrio</option>
+<option value="futurista">🚀 Futurista</option>
+<option value="engracado">😂 Engraçado</option>
+</select>
 
-  <button id="gerar">⚡ GERAR MEUS NOMES</button>
-
-  <section
-    id="resultado"
-    class="resultado"
-    aria-live="polite"
-  ></section>
-
-  <p id="mensagem" aria-live="polite"></p>
-
-  <p class="rodape">
-    Nome Turbo — sua criatividade, suas regras.
-  </p>
+<button class="generate" id="generate">⚡ GERAR NOMES</button>
+<div class="results" id="results" aria-live="polite"></div>
+<p class="message" id="message" aria-live="polite"></p>
+<footer>Nome Turbo © 2026 · Crie seu próximo nome!</footer>
 </main>
 
 <script>
-const finais = {
-  gamer: [
-    "X", "Pro", "Play", "Gamer", "BR",
-    "XP", "Master", "Fire", "Strike", "Legend"
-  ],
-  sombrio: [
-    "Dark", "Shadow", "Ghost", "Night",
-    "Phantom", "Raven", "Void", "Dusk"
-  ],
-  futurista: [
-    "Neo", "Cyber", "Quantum", "Nova",
-    "Hyper", "Pixel", "Nexus", "Volt"
-  ],
-  engracado: [
-    "Pudim", "Pato", "Turbo", "Miojo",
-    "Batata", "Banana", "Pipoca", "Doido"
-  ]
+const styles={
+gamer:{first:["Dark","Pro","Shadow","Ghost","Venom","Dragon","Night","Blaze","King","Zero"],last:["X","BR","Wolf","Hunter","Storm","Fire","Ninja","Legend","Strike","Play"]},
+tiktok:{first:["Real","Only","Hey","Its","Vibe","Crazy","Top","Daily","Mini","Ultra"],last:["Tok","Vibes","Clips","Zone","Mix","Show","Trend","On","Star","World"]},
+instagram:{first:["Its","Real","The","Just","Hey","Life","Dream","Moon","Golden","My"],last:["Vibes","World","Diary","Mood","Life","Soul","Dreams","Star","Space","Official"]},
+equipe:{first:["Elite","Fúria","Tropa","Lendas","Titãs","Alpha","Falcões","Nexus","Supremos","Legião"],last:["Team","Squad","Force","BR","Gaming","X","Prime","United","Legends","Clã"]},
+sombrio:{first:["Dark","Void","Shadow","Phantom","Raven","Night","Dread","Ghost","Abyss","Black"],last:["Soul","Reaper","Moon","Storm","Shade","Blade","Mist","Zero","Wolf","X"]},
+futurista:{first:["Cyber","Neo","Quantum","Nexus","Hyper","Nova","Pixel","Astro","Omega","Zeta"],last:["X","Core","Byte","Wave","Flux","Tech","Bot","Prime","Orbit","One"]},
+engracado:{first:["Pato","Batata","Mestre","Capivara","Biscoito","Pudim","Tio","Ninja","Zé","Big"],last:["Supremo","Do Pix","Malvado","Turbo","Dançante","Sem WiFi","Gamer","Do Grau","Misterioso","Lendário"]}
 };
 
-function misturar(lista) {
-  const copia = [...lista];
+const results=document.getElementById("results");
+const message=document.getElementById("message");
 
-  for (let i = copia.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copia[i], copia[j]] = [copia[j], copia[i]];
-  }
-
-  return copia;
+function randomItem(list){
+return list[Math.floor(Math.random()*list.length)];
 }
 
-function criarNomes(palavra, estilo) {
-  const base = palavra.trim();
-  const extras = finais[estilo];
+function createName(mode,base){
+const style=styles[mode];
+const first=randomItem(style.first);
+const last=randomItem(style.last);
 
-  let combinacoes = [];
+if(!base)return Math.random()<0.5?first+last:first+"_"+last;
 
-  extras.forEach(extra => {
-    combinacoes.push(base + extra);
-    combinacoes.push(extra + base);
-  });
-
-  combinacoes.push(base + "777");
-  combinacoes.push("Real" + base);
-
-  return [...new Set(combinacoes)]
-    .filter(nome => nome.length <= 40);
+const patterns=[
+()=>base+last,
+()=>first+base,
+()=>base+"_"+last,
+()=>first+"_"+base,
+()=>base+randomItem(["X","7","99","YT","BR"]),
+()=>first+base+last
+];
+return randomItem(patterns)();
 }
 
-function gerar() {
-  const entrada = document.getElementById("palavra");
-  const estilo = document.getElementById("estilo").value;
-  const resultado = document.getElementById("resultado");
-  const mensagem = document.getElementById("mensagem");
+function generateNames(){
+const mode=document.getElementById("mode").value;
+const base=document.getElementById("base").value.trim().replace(/\s+/g,"");
+const names=new Set();
+let attempts=0;
 
-  const palavra = entrada.value.trim();
-
-  if (!palavra) {
-    mensagem.textContent =
-      "Digite uma palavra primeiro!";
-    entrada.focus();
-    return;
-  }
-
-  const nomes = misturar(criarNomes(palavra, estilo))
-    .slice(0, 5);
-
-  resultado.replaceChildren();
-
-  const titulo = document.createElement("h3");
-  titulo.textContent = "✨ Seus nomes:";
-  resultado.appendChild(titulo);
-
-  nomes.forEach(nome => {
-    const linha = document.createElement("div");
-    linha.className = "nome";
-
-    const texto = document.createElement("span");
-    texto.textContent = nome;
-
-    const botao = document.createElement("button");
-    botao.textContent = "📋 Copiar";
-    botao.setAttribute("aria-label", "Copiar " + nome);
-
-    botao.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(nome);
-        mensagem.textContent = "Nome copiado: " + nome;
-      } catch (erro) {
-        mensagem.textContent =
-          "Seu navegador não permitiu copiar automaticamente. " +
-          "Selecione o nome: " + nome;
-      }
-    });
-
-    linha.appendChild(texto);
-    linha.appendChild(botao);
-    resultado.appendChild(linha);
-  });
-
-  mensagem.textContent = "Pronto! Foram criados 5 nomes.";
+while(names.size<3&&attempts<100){
+names.add(createName(mode,base));
+attempts++;
 }
 
-document.getElementById("gerar")
-  .addEventListener("click", gerar);
+results.innerHTML="";
+names.forEach(name=>{
+const card=document.createElement("div");
+card.className="result";
 
-document.getElementById("palavra")
-  .addEventListener("keydown", evento => {
-    if (evento.key === "Enter") gerar();
-  });
+const span=document.createElement("span");
+span.textContent=name;
+
+const button=document.createElement("button");
+button.className="copy";
+button.textContent="📋 Copiar";
+
+button.addEventListener("click",async()=>{
+try{
+await navigator.clipboard.writeText(name);
+message.textContent="Nome copiado: "+name;
+}catch(error){
+const area=document.createElement("textarea");
+area.value=name;
+document.body.appendChild(area);
+area.select();
+const copied=document.execCommand("copy");
+area.remove();
+message.textContent=copied?"Nome copiado: "+name:"Copie este nome: "+name;
+}
+});
+
+card.append(span,button);
+results.appendChild(card);
+});
+
+message.textContent="Seus nomes estão prontos! 🚀";
+}
+
+document.getElementById("generate").addEventListener("click",generateNames);
+generateNames();
 </script>
 </body>
-  </html>
+</html>
