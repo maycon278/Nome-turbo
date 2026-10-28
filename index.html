@@ -1,296 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome Turbo | Gerador Automático de Nomes</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #0f172a;
-            color: #f8fafc;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            background-color: #1e293b;
-            width: 100%;
-            max-width: 450px;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            border: 1px solid #334155;
-        }
-
-        h1 {
-            font-size: 2rem;
-            color: #38bdf8;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .subtitle {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            margin-bottom: 25px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            font-size: 0.85rem;
-            color: #94a3b8;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            background-color: #0f172a;
-            border: 2px solid #334155;
-            border-radius: 10px;
-            color: #f8fafc;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus {
-            border-color: #38bdf8;
-        }
-
-        .grid-categories {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .category-btn {
-            background-color: #0f172a;
-            border: 2px solid #334155;
-            color: #cbd5e1;
-            padding: 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .category-btn.active {
-            background-color: #38bdf8;
-            border-color: #38bdf8;
-            color: #0f172a;
-            font-weight: 600;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-        }
-
-        .main-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #38bdf8, #2563eb);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-            transition: transform 0.1s, opacity 0.2s;
-            letter-spacing: 0.5px;
-        }
-
-        .main-btn:active {
-            transform: scale(0.98);
-        }
-
-        .result-box {
-            margin-top: 25px;
-            background-color: #0f172a;
-            padding: 15px;
-            border-radius: 12px;
-            border: 2px dashed #334155;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .result-text {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #38bdf8;
-            word-break: break-all;
-            padding-right: 40px;
-        }
-
-        .copy-btn {
-            position: absolute;
-            right: 10px;
-            background-color: #334155;
-            border: none;
-            color: #f8fafc;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .copy-btn:hover {
-            background-color: #475569;
-        }
-
-        footer {
-            margin-top: 25px;
-            font-size: 0.8rem;
-            color: #64748b;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nome Turbo - Gerador de Nomes Criativos</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui, -apple-system, sans-serif}
+body{background:#0f0f12;color:white;padding:16px;min-height:100vh}
+.container{max-width:500px;margin:0 auto}
+.logo{text-align:center;margin:20px 0}
+.logo h1{font-size:32px;background:linear-gradient(90deg,#8a5cf6,#f43f9e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo p{color:#aaa;margin-top:8px;font-size:14px}
+.card{background:#1c1c20;border-radius:16px;padding:20px;margin:20px 0;border:1px solid #2a2a32}
+label{color:#aaa;font-size:12px;font-weight:700;letter-spacing:1px;display:block;margin-bottom:8px}
+input{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#121216;color:white;font-size:16px;outline:none}
+input:focus{border-color:#8a5cf6}
+.styles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.style-btn{padding:12px;border-radius:10px;border:1px solid #333;background:#121216;color:#ddd;cursor:pointer;font-weight:600}
+.style-btn.ativo{background:#8a5cf6;border-color:#8a5cf6;color:white}
+.btn-gerar{width:100%;padding:16px;background:linear-gradient(90deg,#8a5cf6,#f43f9e);border:none;border-radius:12px;color:white;font-size:18px;font-weight:800;margin-top:20px;cursor:pointer}
+.resultado{margin-top:10px}
+.nome-item{display:flex;justify-content:space-between;align-items:center;background:#121216;padding:12px 14px;border-radius:10px;margin-bottom:8px;border:1px solid #2a2a32}
+.nome-item span{font-weight:600}
+.btn-copy{background:#2a2a32;border:none;color:#8a5cf6;padding:6px 10px;border-radius:6px;font-weight:700;cursor:pointer}
+.footer{text-align:center;color:#555;font-size:12px;margin:30px 0}
+</style>
 </head>
 <body>
+<div class="container">
+  <div class="logo">
+    <h1>🚀 NOME TURBO</h1>
+    <p>Crie nomes incríveis em segundos!</p>
+  </div>
 
-    <div class="container">
-        <h1>⚡ Nome Turbo</h1>
-        <p class="subtitle">Crie nomes incríveis em segundos!</p>
-
-        <div class="input-group">
-            <label for="base-word">SEU NOME OU PALAVRA (OPCIONAL)</label>
-            <input type="text" id="base-word" placeholder="Ex: Lucas, Reis, Fire...">
-        </div>
-
-        <label style="text-align: left; display: block;">ESCOLHA UM ESTILO</label>
-        <div class="grid-categories">
-            <button class="category-btn active" onclick="selectCategory('gamer')">🎮 Gamer</button>
-            <button class="category-btn" onclick="selectCategory('tiktok')">📱 TikTok</button>
-            <button class="category-btn" onclick="selectCategory('instagram')">📸 Instagram</button>
-            <button class="category-btn" onclick="selectCategory('equipes')">👥 Equipes</button>
-            <button class="category-btn" onclick="selectCategory('sombrio')">🌑 Sombrio</button>
-            <button class="category-btn" onclick="selectCategory('futurista')">🚀 Futurista</button>
-            <button class="category-btn" onclick="selectCategory('engracado')">😂 Engraçado</button>
-        </div>
-
-        <button class="main-btn" onclick="generateName()">⚡ GERAR NOME</button>
-
-        <div class="result-box">
-            <span id="result-display" class="result-text">Clique em Gerar!</span>
-            <button class="copy-btn" id="copy-button" onclick="copyToClipboard()" style="display: none;">Copiar</button>
-        </div>
-
-        <footer>
-            Nome Turbo &copy; 2026 &middot; Crie seu próximo nome!
-        </footer>
+  <div class="card">
+    <label>SEU NOME OU PALAVRA (OPCIONAL)</label>
+    <input id="palavra" type="text" placeholder="Ex: Maycon, bola, tech...">
+    
+    <label style="margin-top:18px">ESCOLHA UM ESTILO</label>
+    <div class="styles">
+      <button class="style-btn ativo" onclick="escolher(this,'youtube')">📺 YouTube</button>
+      <button class="style-btn" onclick="escolher(this,'tiktok')">🎵 TikTok</button>
+      <button class="style-btn" onclick="escolher(this,'gamer')">🎮 Gamer</button>
+      <button class="style-btn" onclick="escolher(this,'marca')">💼 Marca</button>
     </div>
 
-    <script>
-        let currentCategory = 'gamer';
+    <button class="btn-gerar" onclick="gerar()">GERAR NOMES ⚡</button>
+    
+    <div id="lista" class="resultado"></div>
+  </div>
 
-        const database = {
-            gamer: {
-                prefix: ['Pro_', 'Cyber', 'Alpha', 'Hyper', 'Vortex', 'Krypton', 'Shadow'],
-                suffix: ['_FPS', 'X', 'GG', 'Plays', 'Storm', 'Striker', 'Titan']
-            },
-            tiktok: {
-                prefix: ['Hey', 'O_', 'Vibe_', 'Daily', 'Mundo', 'Canal_'],
-                suffix: ['Oficial', 'Oli', 'Vibes', 'Arts', 'Videos', 'Tech']
-            },
-            instagram: {
-                prefix: ['Eu_', 'Sou_', 'Studio_', 'Efeito_'],
-                suffix: ['.ofc', '.reserva', '_perfil', '.digital']
-            },
-            equipes: {
-                prefix: ['Team_', 'Clan_', 'Alpha_', 'Alliance_'],
-                suffix: ['Esports', 'Squad', 'Elite', 'Force']
-            },
-            sombrio: {
-                prefix: ['Ghost_', 'Phantom', 'Void_', 'Dark_', 'Eclipse'],
-                suffix: ['Slayer', 'Specter', 'Wraith', 'Hunter']
-            },
-            futurista: {
-                prefix: ['Neo_', 'Nexus_', 'Matrix_', 'Quantum_'],
-                suffix: ['Core', 'Sync', 'Grid', 'Bot']
-            },
-            engracado: {
-                prefix: ['Zeca_', 'Capivara_', 'Biscoito_', 'Rei_Do_'],
-                suffix: ['Cansado', 'Gamer', 'SemNet', 'Alface']
-            }
-        };
+  <div class="footer">Feito por Maycon | Projeto 100% gratuito e no celular<br>nometurbo.github.io</div>
+</div>
 
-        function selectCategory(category) {
-            currentCategory = category;
-            const buttons = document.querySelectorAll('.category-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            // Encontra o botão clicado para ativar
-            event.currentTarget.classList.add('active');
-        }
+<script>
+let estiloAtual = 'youtube';
+function escolher(botao, estilo){
+  document.querySelectorAll('.style-btn').forEach(b=>b.classList.remove('ativo'));
+  botao.classList.add('ativo');
+  estiloAtual = estilo;
+}
 
-        function generateName() {
-            const baseInput = document.getElementById('base-word').value.trim();
-            const lists = database[currentCategory];
-            
-            const randomPrefix = lists.prefix[Math.floor(Math.random() * lists.prefix.length)];
-            const randomSuffix = lists.suffix[Math.floor(Math.random() * lists.suffix.length)];
-            
-            let finalName = "";
+function gerar(){
+  const palavra = document.getElementById('palavra').value.trim() || 'Turbo';
+  const lista = document.getElementById('lista');
+  lista.innerHTML = '';
+  
+  const bases = {
+    youtube: ['Canal', 'Oficial', 'TV', 'Cast', 'Vlogs', 'Play', 'Prime', 'Top'],
+    tiktok: ['Oficial', 'Vibe', 'Real', 'Loko', 'Turbo', 'Z', 'Mix', 'Flow'],
+    gamer: ['Gamer', 'Pro', 'X', 'Kill', 'Squad', 'Elite', 'God', 'Ninja'],
+    marca: ['Studio', 'Labs', 'Creative', 'Digital', 'Co', 'Makers', 'Hub', 'Brand']
+  };
+  
+  const sufixos = bases[estiloAtual];
+  let nomes = [];
+  for(let i=0;i<12;i++){
+    let p = palavra.charAt(0).toUpperCase() + palavra.slice(1);
+    let s = sufixos[Math.floor(Math.random()*sufixos.length)];
+    let num = Math.random() > 0.7 ? Math.floor(Math.random()*99) : '';
+    let formato = Math.random();
+    let nome = formato < 0.33 ? `${p} ${s}${num}` : formato < 0.66 ? `${p}${s}${num}` : `${s} ${p}${num}`;
+    nomes.push(nome);
+  }
+  
+  nomes.forEach(nome=>{
+    const div = document.createElement('div');
+    div.className = 'nome-item';
+    div.innerHTML = `<span>${nome}</span><button class="btn-copy" onclick="copiar('${nome}', this)">Copiar</button>`;
+    lista.appendChild(div);
+  });
+}
 
-            if (baseInput !== "") {
-                // Se o usuário digitou algo, mistura com a palavra dele
-                if (Math.random() > 0.5) {
-                    finalName = randomPrefix + baseInput;
-                } else {
-                    finalName = baseInput + randomSuffix;
-                }
-            } else {
-                // Se estiver vazio, gera 100% do zero
-                finalName = randomPrefix + "_" + randomSuffix;
-            }
-
-            // Remove caracteres duplicados feios como __ ou ..
-            finalName = finalName.replace(/__+/g, '_').replace(/\.\.+/g, '.');
-
-            const display = document.getElementById('result-display');
-            display.innerText = finalName;
-            
-            const copyBtn = document.getElementById('copy-button');
-            copyBtn.style.display = 'block';
-            copyBtn.innerText = 'Copiar';
-        }
-
-        function copyToClipboard() {
-            const textToCopy = document.getElementById('result-display').innerText;
-            if (textToCopy === "Clique em Gerar!") return;
-
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                document.getElementById('copy-button').innerText = 'Copiado!';
-            }).catch(err => {
-                console.error('Erro ao copiar: ', err);
-            });
-        }
-    </script>
+function copiar(texto, btn){
+  navigator.clipboard.writeText(texto);
+  btn.innerText = 'Copiado!';
+  setTimeout(()=>btn.innerText='Copiar', 1500);
+}
+</script>
 </body>
 </html>
