@@ -3,100 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nome Turbo - Gerador de Nomes Criativos</title>
+<title>Nome Turbo</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui, -apple-system, sans-serif}
-body{background:#0f0f12;color:white;padding:16px;min-height:100vh}
-.container{max-width:500px;margin:0 auto}
-.logo{text-align:center;margin:20px 0}
-.logo h1{font-size:32px;background:linear-gradient(90deg,#8a5cf6,#f43f9e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.logo p{color:#aaa;margin-top:8px;font-size:14px}
-.card{background:#1c1c20;border-radius:16px;padding:20px;margin:20px 0;border:1px solid #2a2a32}
-label{color:#aaa;font-size:12px;font-weight:700;letter-spacing:1px;display:block;margin-bottom:8px}
-input{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#121216;color:white;font-size:16px;outline:none}
-input:focus{border-color:#8a5cf6}
-.styles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.style-btn{padding:12px;border-radius:10px;border:1px solid #333;background:#121216;color:#ddd;cursor:pointer;font-weight:600}
-.style-btn.ativo{background:#8a5cf6;border-color:#8a5cf6;color:white}
-.btn-gerar{width:100%;padding:16px;background:linear-gradient(90deg,#8a5cf6,#f43f9e);border:none;border-radius:12px;color:white;font-size:18px;font-weight:800;margin-top:20px;cursor:pointer}
-.resultado{margin-top:10px}
-.nome-item{display:flex;justify-content:space-between;align-items:center;background:#121216;padding:12px 14px;border-radius:10px;margin-bottom:8px;border:1px solid #2a2a32}
-.nome-item span{font-weight:600}
-.btn-copy{background:#2a2a32;border:none;color:#8a5cf6;padding:6px 10px;border-radius:6px;font-weight:700;cursor:pointer}
-.footer{text-align:center;color:#555;font-size:12px;margin:30px 0}
+*{box-sizing:border-box}
+body{margin:0;padding:24px 14px;min-height:100vh;background:#0b1020;color:white;font-family:Arial,sans-serif}
+.container{max-width:520px;margin:auto;background:#141b2e;padding:24px;border:1px solid #293451;border-radius:20px;box-shadow:0 12px 40px #0005}
+h1{text-align:center;font-size:34px;margin:0 0 8px;color:#62e6ff}
+.subtitle{text-align:center;color:#b5c1d9;margin-bottom:26px}
+label{display:block;margin:16px 0 8px;font-weight:bold}
+input,select,button{width:100%;padding:14px;border-radius:11px;font-size:16px}
+input,select{background:#0b1020;color:white;border:1px solid #354363}
+button{border:none;cursor:pointer;font-weight:bold}
+.generate{margin-top:22px;background:linear-gradient(90deg,#00c6ff,#7b61ff);color:white}
+.results{margin-top:22px;display:grid;gap:12px}
+.result{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px;background:#202a43;border:1px solid #354363;border-radius:12px;overflow-wrap:anywhere}
+.result span{font-weight:bold;overflow-wrap:anywhere}
+.copy{width:auto;min-width:82px;padding:10px;background:#344565;color:white;font-size:13px}
+.message{text-align:center;color:#62e6ff;min-height:20px;margin-top:12px}
+footer{text-align:center;margin-top:24px;color:#8593b2;font-size:12px}
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="logo">
-    <h1>🚀 NOME TURBO</h1>
-    <p>Crie nomes incríveis em segundos!</p>
-  </div>
+<main class="container">
+<h1>⚡ Nome Turbo</h1>
+<p class="subtitle">Crie nomes incríveis em segundos!</p>
 
-  <div class="card">
-    <label>SEU NOME OU PALAVRA (OPCIONAL)</label>
-    <input id="palavra" type="text" placeholder="Ex: Maycon, bola, tech...">
-    
-    <label style="margin-top:18px">ESCOLHA UM ESTILO</label>
-    <div class="styles">
-      <button class="style-btn ativo" onclick="escolher(this,'youtube')">📺 YouTube</button>
-      <button class="style-btn" onclick="escolher(this,'tiktok')">🎵 TikTok</button>
-      <button class="style-btn" onclick="escolher(this,'gamer')">🎮 Gamer</button>
-      <button class="style-btn" onclick="escolher(this,'marca')">💼 Marca</button>
-    </div>
+<label for="base">Seu nome ou palavra (opcional)</label>
+<input id="base" maxlength="20" placeholder="Ex.: Lucas, Shadow, Dragon">
 
-    <button class="btn-gerar" onclick="gerar()">GERAR NOMES ⚡</button>
-    
-    <div id="lista" class="resultado"></div>
-  </div>
+<label for="mode">Escolha um estilo</label>
+<select id="mode">
+<option value="gamer">🎮 Gamer</option>
+<option value="tiktok">📱 TikTok</option>
+<option value="instagram">📸 Instagram</option>
+<option value="equipe">👥 Equipes</option>
+<option value="sombrio">🌑 Sombrio</option>
+<option value="futurista">🚀 Futurista</option>
+<option value="engracado">😂 Engraçado</option>
+</select>
 
-  <div class="footer">Feito por Maycon | Projeto 100% gratuito e no celular<br>nometurbo.github.io</div>
-</div>
+<button class="generate" id="generate">⚡ GERAR NOMES</button>
+<div class="results" id="results" aria-live="polite"></div>
+<p class="message" id="message" aria-live="polite"></p>
+<footer>Nome Turbo © 2026 · Crie seu próximo nome!</footer>
+</main>
 
 <script>
-let estiloAtual = 'youtube';
-function escolher(botao, estilo){
-  document.querySelectorAll('.style-btn').forEach(b=>b.classList.remove('ativo'));
-  botao.classList.add('ativo');
-  estiloAtual = estilo;
+const styles={
+gamer:{first:["Dark","Pro","Shadow","Ghost","Venom","Dragon","Night","Blaze","King","Zero"],last:["X","BR","Wolf","Hunter","Storm","Fire","Ninja","Legend","Strike","Play"]},
+tiktok:{first:["Real","Only","Hey","Its","Vibe","Crazy","Top","Daily","Mini","Ultra"],last:["Tok","Vibes","Clips","Zone","Mix","Show","Trend","On","Star","World"]},
+instagram:{first:["Its","Real","The","Just","Hey","Life","Dream","Moon","Golden","My"],last:["Vibes","World","Diary","Mood","Life","Soul","Dreams","Star","Space","Official"]},
+equipe:{first:["Elite","Fúria","Tropa","Lendas","Titãs","Alpha","Falcões","Nexus","Supremos","Legião"],last:["Team","Squad","Force","BR","Gaming","X","Prime","United","Legends","Clã"]},
+sombrio:{first:["Dark","Void","Shadow","Phantom","Raven","Night","Dread","Ghost","Abyss","Black"],last:["Soul","Reaper","Moon","Storm","Shade","Blade","Mist","Zero","Wolf","X"]},
+futurista:{first:["Cyber","Neo","Quantum","Nexus","Hyper","Nova","Pixel","Astro","Omega","Zeta"],last:["X","Core","Byte","Wave","Flux","Tech","Bot","Prime","Orbit","One"]},
+engracado:{first:["Pato","Batata","Mestre","Capivara","Biscoito","Pudim","Tio","Ninja","Zé","Big"],last:["Supremo","Do Pix","Malvado","Turbo","Dançante","Sem WiFi","Gamer","Do Grau","Misterioso","Lendário"]}
+};
+
+const results=document.getElementById("results");
+const message=document.getElementById("message");
+
+function randomItem(list){
+return list[Math.floor(Math.random()*list.length)];
 }
 
-function gerar(){
-  const palavra = document.getElementById('palavra').value.trim() || 'Turbo';
-  const lista = document.getElementById('lista');
-  lista.innerHTML = '';
-  
-  const bases = {
-    youtube: ['Canal', 'Oficial', 'TV', 'Cast', 'Vlogs', 'Play', 'Prime', 'Top'],
-    tiktok: ['Oficial', 'Vibe', 'Real', 'Loko', 'Turbo', 'Z', 'Mix', 'Flow'],
-    gamer: ['Gamer', 'Pro', 'X', 'Kill', 'Squad', 'Elite', 'God', 'Ninja'],
-    marca: ['Studio', 'Labs', 'Creative', 'Digital', 'Co', 'Makers', 'Hub', 'Brand']
-  };
-  
-  const sufixos = bases[estiloAtual];
-  let nomes = [];
-  for(let i=0;i<12;i++){
-    let p = palavra.charAt(0).toUpperCase() + palavra.slice(1);
-    let s = sufixos[Math.floor(Math.random()*sufixos.length)];
-    let num = Math.random() > 0.7 ? Math.floor(Math.random()*99) : '';
-    let formato = Math.random();
-    let nome = formato < 0.33 ? `${p} ${s}${num}` : formato < 0.66 ? `${p}${s}${num}` : `${s} ${p}${num}`;
-    nomes.push(nome);
-  }
-  
-  nomes.forEach(nome=>{
-    const div = document.createElement('div');
-    div.className = 'nome-item';
-    div.innerHTML = `<span>${nome}</span><button class="btn-copy" onclick="copiar('${nome}', this)">Copiar</button>`;
-    lista.appendChild(div);
-  });
+function createName(mode,base){
+const style=styles[mode];
+const first=randomItem(style.first);
+const last=randomItem(style.last);
+
+if(!base)return Math.random()<0.5?first+last:first+"_"+last;
+
+const patterns=[
+()=>base+last,
+()=>first+base,
+()=>base+"_"+last,
+()=>first+"_"+base,
+()=>base+randomItem(["X","7","99","YT","BR"]),
+()=>first+base+last
+];
+return randomItem(patterns)();
 }
 
-function copiar(texto, btn){
-  navigator.clipboard.writeText(texto);
-  btn.innerText = 'Copiado!';
-  setTimeout(()=>btn.innerText='Copiar', 1500);
+function generateNames(){
+const mode=document.getElementById("mode").value;
+const base=document.getElementById("base").value.trim().replace(/\s+/g,"");
+const names=new Set();
+let attempts=0;
+
+while(names.size<3&&attempts<100){
+names.add(createName(mode,base));
+attempts++;
 }
+
+results.innerHTML="";
+names.forEach(name=>{
+const card=document.createElement("div");
+card.className="result";
+
+const span=document.createElement("span");
+span.textContent=name;
+
+const button=document.createElement("button");
+button.className="copy";
+button.textContent="📋 Copiar";
+
+button.addEventListener("click",async()=>{
+try{
+await navigator.clipboard.writeText(name);
+message.textContent="Nome copiado: "+name;
+}catch(error){
+const area=document.createElement("textarea");
+area.value=name;
+document.body.appendChild(area);
+area.select();
+const copied=document.execCommand("copy");
+area.remove();
+message.textContent=copied?"Nome copiado: "+name:"Copie este nome: "+name;
+}
+});
+
+card.append(span,button);
+results.appendChild(card);
+});
+
+message.textContent="Seus nomes estão prontos! 🚀";
+}
+
+document.getElementById("generate").addEventListener("click",generateNames);
+generateNames();
 </script>
 </body>
 </html>
